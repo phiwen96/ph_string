@@ -1,5 +1,5 @@
 # Testing library
-set (${self} test_${PROJECT_NAME})
+set (${self} test_ph_string)
 # ph_fetch (catch2)
 # find_package(Catch2 REQUIRED)
 
@@ -14,27 +14,27 @@ FetchContent_MakeAvailable(Catch2)
 
 file(GLOB_RECURSE HEADER_LIST "include/*.hpp")
 file(GLOB SOURCE_LIST *.cpp)
-add_executable (test_${PROJECT_NAME} ${SOURCE_LIST} ${HEADER_LIST})
-target_link_libraries (test_${PROJECT_NAME} PUBLIC ${PROJECT_NAME} Catch2::Catch2 ${Boost_LIBRARIES})
-target_include_directories (test_${PROJECT_NAME} PRIVATE include PUBLIC ${PROJECT_NAME} ${Boost_INCLUDE_DIRS})
-ph_precompile (TARGET test_${PROJECT_NAME} PRIVATE PCH ${std_pch})
-# add_test (NAME testtest_${PROJECT_NAME} COMMAND ${self}) 
+add_executable (test_ph_string ${SOURCE_LIST} ${HEADER_LIST})
+target_link_libraries (test_ph_string PUBLIC ph_string Catch2::Catch2 ${Boost_LIBRARIES})
+target_include_directories (test_ph_string PRIVATE include PUBLIC ph_string ${Boost_INCLUDE_DIRS})
+ph_precompile (TARGET test_ph_string PRIVATE PCH ${std_pch})
+# add_test (NAME testtest_ph_string COMMAND ${self}) 
 
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    set_target_properties(test_${PROJECT_NAME}          PROPERTIES FOLDER "${PROJECT_NAME}")
+    set_target_properties(test_ph_string          PROPERTIES FOLDER "ph_string")
 else()
-    set_target_properties(test_${PROJECT_NAME}           PROPERTIES FOLDER "dependencies/${PROJECT_NAME}")
+    set_target_properties(test_ph_string           PROPERTIES FOLDER "dependencies/ph_string")
 endif()
 # add_custom_target(
 #   GenexDemo
-#   COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:test_${PROJECT_NAME}>"
+#   COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:test_ph_string>"
 #   VERBATIM
 # )
 
 
 add_custom_command(
-  TARGET test_${PROJECT_NAME} PRE_BUILD
-  COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:test_${PROJECT_NAME}>"
+  TARGET test_ph_string PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:test_ph_string>"
 #   VERBATIM
 )
