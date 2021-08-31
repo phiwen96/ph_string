@@ -1,7 +1,3 @@
-# Testing library
-set (${self} test_ph_string)
-# ph_fetch (catch2)
-# find_package(Catch2 REQUIRED)
 
 include(FetchContent)
 
